@@ -3,7 +3,6 @@ import logging
 from typing import Dict, Type
 
 import pyartnet
-
 from .errors import ChannelExistsError, ChannelNotFoundError, OverlappingChannelError
 
 log = logging.getLogger('pyartnet.DmxUniverse')
@@ -100,7 +99,7 @@ class DmxUniverse:
         while self.__fade_running:
             await asyncio.sleep(self._artnet_node.sleep_time)
 
-    def animation_thread_start(self):
+    async def animation_thread_start(self):
         await self._artnet_node.start()
 
     @property

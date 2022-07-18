@@ -66,6 +66,7 @@ class AnimationNode:
                             last_update = time.time()
                     else:
                         # Stop thread
+                        self.__task = None
                         return None
             except Exception as e:
                 log.error(f'Error in worker {e.__str__()}')

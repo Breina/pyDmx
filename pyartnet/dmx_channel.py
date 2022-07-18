@@ -69,7 +69,7 @@ class DmxChannel:
                     val = (obj >> 8 * (i - 1)) & 0xFF
                     yield val
 
-    def add_fade(self, target_values: Iterable[Union[int, FadeBase]],
+    async def add_fade(self, target_values: Iterable[Union[int, FadeBase]],
                  duration_ms: int, fade_class: Type[FadeBase] = LinearFade):
 
         fade_objs: List[FadeBase] = []
@@ -111,7 +111,7 @@ class DmxChannel:
                 ), [])
 
         self.__fade_running = True
-        self.__universe.animation_thread_start()
+        await self.__universe.animation_thread_start()
         return None
 
     async def wait_till_fade_complete(self):
